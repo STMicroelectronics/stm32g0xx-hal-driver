@@ -188,16 +188,16 @@ typedef struct
   */
 
 
-#define __HAL_PCD_ENABLE(__HANDLE__)                                  (void)USB_EnableGlobalInt ((__HANDLE__)->Instance)
-#define __HAL_PCD_DISABLE(__HANDLE__)                                 (void)USB_DisableGlobalInt ((__HANDLE__)->Instance)
-#define __HAL_PCD_GET_FLAG(__HANDLE__, __INTERRUPT__)                 ((USB_ReadInterrupts((__HANDLE__)->Instance)\
-                                                                        & (__INTERRUPT__)) == (__INTERRUPT__))
+#define __HAL_PCD_ENABLE(__HANDLE__)                              (void)USB_EnableGlobalInt ((__HANDLE__)->Instance)
+#define __HAL_PCD_DISABLE(__HANDLE__)                             (void)USB_DisableGlobalInt ((__HANDLE__)->Instance)
+#define __HAL_PCD_GET_FLAG(__HANDLE__, __INTERRUPT__)             ((USB_ReadInterrupts((__HANDLE__)->Instance)\
+                                                                    & (__INTERRUPT__)) == (__INTERRUPT__))
 
-#define __HAL_PCD_CLEAR_FLAG(__HANDLE__, __INTERRUPT__)               (((__HANDLE__)->Instance->ISTR)\
-                                                                       &= (uint16_t)(~(__INTERRUPT__)))
+#define __HAL_PCD_CLEAR_FLAG(__HANDLE__, __INTERRUPT__)           (((__HANDLE__)->Instance->ISTR)\
+                                                                   &= (uint16_t)(~(__INTERRUPT__)))
 
-#define __HAL_USB_WAKEUP_EXTI_ENABLE_IT()                             EXTI->IMR2 |= USB_WAKEUP_EXTI_LINE
-#define __HAL_USB_WAKEUP_EXTI_DISABLE_IT()                            EXTI->IMR2 &= ~(USB_WAKEUP_EXTI_LINE)
+#define __HAL_USB_WAKEUP_EXTI_ENABLE_IT()                         EXTI->IMR2 |= USB_WAKEUP_EXTI_LINE
+#define __HAL_USB_WAKEUP_EXTI_DISABLE_IT()                        EXTI->IMR2 &= ~(USB_WAKEUP_EXTI_LINE)
 
 
 /**
@@ -341,13 +341,12 @@ HAL_StatusTypeDef HAL_PCD_EP_Receive(PCD_HandleTypeDef *hpcd, uint8_t ep_addr,
 HAL_StatusTypeDef HAL_PCD_EP_Transmit(PCD_HandleTypeDef *hpcd, uint8_t ep_addr,
                                       uint8_t *pBuf, uint32_t len);
 
-
 HAL_StatusTypeDef HAL_PCD_EP_SetStall(PCD_HandleTypeDef *hpcd, uint8_t ep_addr);
 HAL_StatusTypeDef HAL_PCD_EP_ClrStall(PCD_HandleTypeDef *hpcd, uint8_t ep_addr);
 HAL_StatusTypeDef HAL_PCD_EP_Flush(PCD_HandleTypeDef *hpcd, uint8_t ep_addr);
+HAL_StatusTypeDef HAL_PCD_EP_Abort(PCD_HandleTypeDef *hpcd, uint8_t ep_addr);
 HAL_StatusTypeDef HAL_PCD_ActivateRemoteWakeup(PCD_HandleTypeDef *hpcd);
 HAL_StatusTypeDef HAL_PCD_DeActivateRemoteWakeup(PCD_HandleTypeDef *hpcd);
-
 uint32_t          HAL_PCD_EP_GetRxCount(PCD_HandleTypeDef *hpcd, uint8_t ep_addr);
 /**
   * @}
@@ -441,7 +440,7 @@ PCD_StateTypeDef HAL_PCD_GetState(PCD_HandleTypeDef *hpcd);
   * @param   bEpNum, bDir
   * @retval None
   */
-#define PCD_FreeUserBuffer                     USB_DRD_FreeUserBuffer
+#define PCD_FREE_USER_BUFFER                   USB_DRD_FREE_USER_BUFFER
 
 /**
   * @brief  sets the status for tx transfer (bits STAT_TX[1:0]).
@@ -467,8 +466,11 @@ PCD_StateTypeDef HAL_PCD_GetState(PCD_HandleTypeDef *hpcd);
   * @param  bEpNum Endpoint Number.
   * @retval None
   */
-#define PCD_SET_EP_DBUF                        USB_DRD_SET_CHEP_KIND
-#define PCD_CLEAR_EP_DBUF                      USB_DRD_CLEAR_CHEP_KIND
+#define PCD_SET_EP_KIND                        USB_DRD_SET_CHEP_KIND
+#define PCD_CLEAR_EP_KIND                      USB_DRD_CLEAR_CHEP_KIND
+#define PCD_SET_BULK_EP_DBUF                   PCD_SET_EP_KIND
+#define PCD_CLEAR_BULK_EP_DBUF                 PCD_CLEAR_EP_KIND
+
 
 /**
   * @brief  Clears bit CTR_RX / CTR_TX in the endpoint register.

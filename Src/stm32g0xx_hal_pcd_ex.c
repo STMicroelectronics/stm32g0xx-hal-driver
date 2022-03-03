@@ -101,6 +101,7 @@ HAL_StatusTypeDef  HAL_PCDEx_PMAConfig(PCD_HandleTypeDef *hpcd, uint16_t ep_addr
     /* Configure the PMA */
     ep->pmaadress = (uint16_t)pmaadress;
   }
+#if (USE_USB_DOUBLE_BUFFER == 1U)
   else /* USB_DBL_BUF */
   {
     /* Double Buffer Endpoint */
@@ -109,6 +110,7 @@ HAL_StatusTypeDef  HAL_PCDEx_PMAConfig(PCD_HandleTypeDef *hpcd, uint16_t ep_addr
     ep->pmaaddr0 = (uint16_t)(pmaadress & 0xFFFFU);
     ep->pmaaddr1 = (uint16_t)((pmaadress & 0xFFFF0000U) >> 16);
   }
+#endif /* (USE_USB_DOUBLE_BUFFER == 1U) */
 
   return HAL_OK;
 }
@@ -160,7 +162,7 @@ void HAL_PCDEx_BCD_VBUSDetect(PCD_HandleTypeDef *hpcd)
   USB_DRD_TypeDef *USBx = hpcd->Instance;
   uint32_t tickstart = HAL_GetTick();
 
-  /* Wait Detect flag or a timeout is happen*/
+  /* Wait Detect flag or a timeout is happen */
   while ((USBx->BCDR & USB_BCDR_DCDET) == 0U)
   {
     /* Check for the Timeout */

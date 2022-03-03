@@ -23,7 +23,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-#endif
+#endif /* __cplusplus */
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32g0xx_hal_def.h"
@@ -83,7 +83,7 @@ void HAL_PCDEx_BCD_Callback(PCD_HandleTypeDef *hpcd, PCD_BCD_MsgTypeDef msg);
 
 #ifdef __cplusplus
 }
-#endif
+#endif /* __cplusplus */
 
 
 #endif /* STM32G0xx_HAL_PCD_EX_H */
