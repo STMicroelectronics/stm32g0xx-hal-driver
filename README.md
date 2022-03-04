@@ -38,7 +38,8 @@ Tag v1.3.0    | Tag v1.3.0      | Tag v5.4.0_cm0 | Tag v1.3.0 (and following, if
 Tag v1.4.0    | Tag v1.4.0      | Tag v5.6.0_cm0 | Tag v1.4.0 (and following, if any, till next HAL tag)
 Tag v1.4.1    | Tag v1.4.0      | Tag v5.6.0_cm0 | Tag v1.4.1 (and following, if any, till next HAL tag)
 Tag v1.4.2    | Tag v1.4.1      | Tag v5.6.0_cm0 | Tag v1.5.0 (and following, if any, till next HAL tag)
-Tag v1.4.3    | Tag v1.4.1      | Tag v5.6.0_cm0 | None (will be integrated into next HAL tag v1.4.4)
+Tag v1.4.3    | Tag v1.4.1      | Tag v5.6.0_cm0 | Tag v1.5.1 (still to come)
+SHA-1 65daa9453a625394 | SHA-1 1fad10e09202e149 | Tag v5.6.0_cm0 | Tag v1.5.1 (still to come)
 
 The full **STM32CubeG0** MCU package is available [here](https://github.com/STMicroelectronics/STM32CubeG0).
 
