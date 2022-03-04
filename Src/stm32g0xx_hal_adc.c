@@ -845,8 +845,10 @@ HAL_StatusTypeDef HAL_ADC_DeInit(ADC_HandleTypeDef *hadc)
   /* Reset register SMPR */
   hadc->Instance->SMPR &= ~ADC_SMPR_SMP1;
 
-  /* Reset register TR1 */
-  hadc->Instance->TR1 &= ~(ADC_TR1_HT1 | ADC_TR1_LT1);
+  /* Reset registers AWDxTR */
+  hadc->Instance->AWD1TR &= ~(ADC_AWD1TR_HT1 | ADC_AWD1TR_LT1);
+  hadc->Instance->AWD2TR &= ~(ADC_AWD2TR_HT2 | ADC_AWD2TR_LT2);
+  hadc->Instance->AWD3TR &= ~(ADC_AWD3TR_HT3 | ADC_AWD3TR_LT3);
 
   /* Reset register CHSELR */
   hadc->Instance->CHSELR &= ~(ADC_CHSELR_SQ_ALL);
