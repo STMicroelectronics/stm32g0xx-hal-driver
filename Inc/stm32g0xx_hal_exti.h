@@ -384,3 +384,4 @@ void              HAL_EXTI_GenerateSWI(EXTI_HandleTypeDef *hexti);
 #endif
 
 #endif /* STM32G0xx_HAL_EXTI_H */
+

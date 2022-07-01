@@ -1734,6 +1734,10 @@ static HAL_StatusTypeDef PCD_EP_ISR_Handler(PCD_HandleTypeDef *hpcd)
   uint16_t TxPctSize;
   uint8_t epindex;
 
+#if (USE_USB_DOUBLE_BUFFER != 1U)
+  count = 0U;
+#endif /* USE_USB_DOUBLE_BUFFER */
+
   /* stay in loop while pending interrupts */
   while ((hpcd->Instance->ISTR & USB_ISTR_CTR) != 0U)
   {
@@ -1821,7 +1825,9 @@ static HAL_StatusTypeDef PCD_EP_ISR_Handler(PCD_HandleTypeDef *hpcd)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
           }
 
-          if ((PCD_GET_ENDPOINT(hpcd->Instance, PCD_ENDP0) & USB_EP_SETUP) == 0U)
+          wEPVal = (uint16_t)PCD_GET_ENDPOINT(hpcd->Instance, PCD_ENDP0);
+
+          if (((wEPVal & USB_EP_SETUP) == 0U) && ((wEPVal & USB_EP_RX_STRX) != USB_EP_RX_VALID))
           {
             PCD_SET_EP_RX_CNT(hpcd->Instance, PCD_ENDP0, ep->maxpacket);
             PCD_SET_EP_RX_STATUS(hpcd->Instance, PCD_ENDP0, USB_EP_RX_VALID);
@@ -1914,7 +1920,7 @@ static HAL_StatusTypeDef PCD_EP_ISR_Handler(PCD_HandleTypeDef *hpcd)
         /* clear int flag */
         PCD_CLEAR_TX_EP_CTR(hpcd->Instance, epindex);
 
-        if (ep->type != EP_TYPE_BULK)
+        if (ep->type == EP_TYPE_ISOC)
         {
           ep->xfer_len = 0U;
 
@@ -1941,7 +1947,7 @@ static HAL_StatusTypeDef PCD_EP_ISR_Handler(PCD_HandleTypeDef *hpcd)
         }
         else
         {
-          /* Manage Bulk Single Buffer Transaction */
+          /* Manage Single Buffer Transaction */
           if ((wEPVal & USB_EP_KIND) == 0U)
           {
             /* multi-packet on the NON control IN endpoint */

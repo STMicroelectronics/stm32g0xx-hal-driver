@@ -9,10 +9,9 @@
   * Copyright (c) 2018 STMicroelectronics.
   * All rights reserved.
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
+  * This software is licensed under terms that can be found in the LICENSE file in
+  * the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
   ******************************************************************************
   */
 
@@ -235,7 +234,7 @@ typedef struct
   * @{
   */
 #define HAL_FLASH_ERROR_NONE            0x00000000U
-#define HAL_FLASH_ERROR_OP              FLASH_SR_EOP
+#define HAL_FLASH_ERROR_OP              FLASH_SR_OPERR
 #define HAL_FLASH_ERROR_PROG            FLASH_SR_PROGERR
 #define HAL_FLASH_ERROR_WRP             FLASH_SR_WRPERR
 #define HAL_FLASH_ERROR_PGA             FLASH_SR_PGAERR
@@ -1031,3 +1030,4 @@ HAL_StatusTypeDef  FLASH_WaitForLastOperation(uint32_t Timeout);
 #endif
 
 #endif /* STM32G0xx_HAL_FLASH_H */
+

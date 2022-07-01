@@ -9,8 +9,8 @@
   * Copyright (c) 2018 STMicroelectronics.
   * All rights reserved.
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
+  * This software is licensed under terms that can be found in the LICENSE file in
+  * the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
@@ -247,7 +247,7 @@ typedef struct
  * @{
  */
 /* Initialization and Configuration functions *****************************/
-void HAL_NVIC_SetPriority(IRQn_Type IRQn,uint32_t PreemptPriority, uint32_t SubPriority);
+void HAL_NVIC_SetPriority(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority);
 void HAL_NVIC_EnableIRQ(IRQn_Type IRQn);
 void HAL_NVIC_DisableIRQ(IRQn_Type IRQn);
 void HAL_NVIC_SystemReset(void);
@@ -380,3 +380,6 @@ void HAL_MPU_ConfigRegion(MPU_Region_InitTypeDef *MPU_Init);
 #endif
 
 #endif /* STM32G0xx_HAL_CORTEX_H */
+
+
+

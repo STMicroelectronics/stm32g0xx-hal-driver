@@ -1152,3 +1152,5 @@ uint32_t          HAL_RTCEx_BKUPRead(RTC_HandleTypeDef *hrtc, uint32_t BackupReg
 #endif
 
 #endif /* STM32G0xx_HAL_RTC_EX_H */
+
+

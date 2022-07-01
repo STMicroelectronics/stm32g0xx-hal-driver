@@ -36,7 +36,6 @@ extern "C" {
   */
 
 /* Exported types ------------------------------------------------------------*/
-
 /* Exported constants --------------------------------------------------------*/
 /** @defgroup SMBUSEx_Exported_Constants SMBUS Extended Exported Constants
   * @{
@@ -81,7 +80,17 @@ extern "C" {
   * @{
   */
 
-/** @addtogroup SMBUSEx_Exported_Functions_Group3 SMBUS Extended FastModePlus Functions
+/** @addtogroup SMBUSEx_Exported_Functions_Group2 WakeUp Mode Functions
+  * @{
+  */
+/* Peripheral Control functions  ************************************************/
+HAL_StatusTypeDef HAL_SMBUSEx_EnableWakeUp(SMBUS_HandleTypeDef *hsmbus);
+HAL_StatusTypeDef HAL_SMBUSEx_DisableWakeUp(SMBUS_HandleTypeDef *hsmbus);
+/**
+  * @}
+  */
+
+/** @addtogroup SMBUSEx_Exported_Functions_Group3 Fast Mode Plus Functions
   * @{
   */
 void HAL_SMBUSEx_EnableFastModePlus(uint32_t ConfigFastModePlus);

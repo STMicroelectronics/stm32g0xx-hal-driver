@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2018 STMicroelectronics.
+  * Copyright (c) 2018 STMicroelectronics. 
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -834,3 +834,5 @@ void HAL_SYSCFG_StrobeDBattpinsConfig(uint32_t ConfigDeadBattery);
 #endif
 
 #endif /* STM32G0xx_HAL_H */
+
+

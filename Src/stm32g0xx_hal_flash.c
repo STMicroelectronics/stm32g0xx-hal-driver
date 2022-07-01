@@ -9,18 +9,7 @@
   *           + Memory Control functions
   *           + Peripheral Errors functions
   *
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2018 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
-  @verbatim
+ @verbatim
   ==============================================================================
                         ##### FLASH peripheral features #####
   ==============================================================================
@@ -80,7 +69,16 @@
        (+) Enable/Disable the Flash interrupts
        (+) Monitor the Flash flags status
 
-  @endverbatim
+ @endverbatim
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2018 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file in
+  * the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   ******************************************************************************
   */
 
@@ -719,3 +717,4 @@ static __RAM_FUNC void FLASH_Program_Fast(uint32_t Address, uint32_t DataAddress
 /**
   * @}
   */
+

@@ -3,6 +3,18 @@
   * @file    stm32g0xx_ll_system.h
   * @author  MCD Application Team
   * @brief   Header file of SYSTEM LL module.
+  *
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2018 STMicroelectronics. 
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
   @verbatim
   ==============================================================================
                      ##### How to use this driver #####
@@ -16,16 +28,6 @@
       (+) Access to VREFBUF registers
 
   @endverbatim
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2018 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
   ******************************************************************************
   */
 
@@ -2079,3 +2081,5 @@ __STATIC_INLINE void LL_FLASH_DisableInstCacheReset(void)
 #endif
 
 #endif /* STM32G0xx_LL_SYSTEM_H */
+
+

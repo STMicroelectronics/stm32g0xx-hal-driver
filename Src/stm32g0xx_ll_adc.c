@@ -242,6 +242,9 @@ ErrorStatus LL_ADC_CommonDeInit(ADC_Common_TypeDef *ADCxy_COMMON)
   /* Check the parameters */
   assert_param(IS_ADC_COMMON_INSTANCE(ADCxy_COMMON));
 
+  /* Prevent unused argument(s) compilation warning if no assert_param check */
+  (void)(ADCxy_COMMON);
+
   /* Force reset of ADC clock (core clock) */
   LL_APB2_GRP1_ForceReset(LL_APB2_GRP1_PERIPH_ADC);
 

@@ -10,7 +10,7 @@
     [..]
     The LL CORTEX driver contains a set of generic APIs that can be
     used by user:
-      (+) SYSTICK configuration used by @ref LL_mDelay and @ref LL_Init1msTick
+      (+) SYSTICK configuration used by LL_mDelay and LL_Init1msTick
           functions
       (+) Low power mode configuration (SCB register of Cortex-MCU)
       (+) MPU API to configure and enable regions
@@ -23,8 +23,8 @@
   * Copyright (c) 2018 STMicroelectronics.
   * All rights reserved.
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
+  * This software is licensed under terms that can be found in the LICENSE file in
+  * the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
@@ -582,3 +582,4 @@ __STATIC_INLINE void LL_MPU_DisableRegion(uint32_t Region)
 #endif
 
 #endif /* STM32G0xx_LL_CORTEX_H */
+

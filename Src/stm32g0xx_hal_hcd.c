@@ -2318,17 +2318,19 @@ static uint8_t HAL_HCD_Get_FreePhyChannel(HCD_HandleTypeDef *hhcd, uint8_t ch_nu
     {
       if (hhcd->phy_chin_state[idx] == 0U)
       {
-        /* chin_state will store the ep_type to be used for the same channel in OUT direction */
+        /* chin_state to store the ep_type to be used for the same channel in OUT direction
+         * adding + 1 to ep_type avoid starting with a 0 value. ep_type take by default (0/1/2/3) */
         hhcd->phy_chin_state[idx] = (((uint16_t)ch_num + 1U) << 4U) |
-                                    ((uint16_t)ep_type + 1U) | /* ep_type(0/1/2/3) so adding + 1 to avoid having a 0 value */
+                                    ((uint16_t)ep_type + 1U) |
                                     (((uint16_t)epnum & 0x0FU) << 8U);
       }
 
       if (hhcd->phy_chout_state[idx] == 0U)
       {
-        /* chout_state will store the ep_type to be used for the same channel in IN direction */
+        /* chout_state will store the ep_type to be used for the same channel in IN direction
+         * adding + 1 to ep_type avoid starting with a 0 value. ep_type take by default (0/1/2/3) */
         hhcd->phy_chout_state[idx] = (((uint16_t)ch_num + 1U) << 4U) |
-                                     ((uint16_t)ep_type + 1U) | /* ep_type(0/1/2/3) so adding + 1 to avoid having a 0 value */
+                                     ((uint16_t)ep_type + 1U) |
                                      (((uint16_t)epnum & 0x0FU) << 8U);
       }
     }
@@ -2338,9 +2340,10 @@ static uint8_t HAL_HCD_Get_FreePhyChannel(HCD_HandleTypeDef *hhcd, uint8_t ch_nu
       {
         if (((hhcd->phy_chin_state[idx] & 0xF0U) >> 4U) != ((uint16_t)ch_num + 1U))
         {
-          /* chin_state will store the ep_type to be used for the same channel in OUT direction */
+          /* chin_state to store the ep_type to be used for the same channel in OUT direction
+           * adding + 1 to ep_type avoid starting with a 0 value. ep_type take by default (0/1/2/3) */
           hhcd->phy_chin_state[idx] = (((uint16_t)ch_num + 1U) << 4U) |
-                                      ((uint16_t)ep_type + 1U) | /* ep_type(0/1/2/3) so adding + 1 to avoid having a 0 value */
+                                      ((uint16_t)ep_type + 1U) |
                                       (((uint16_t)epnum & 0x0FU) << 8U);
         }
       }
@@ -2348,9 +2351,10 @@ static uint8_t HAL_HCD_Get_FreePhyChannel(HCD_HandleTypeDef *hhcd, uint8_t ch_nu
       {
         if (((hhcd->phy_chout_state[idx] & 0xF0U) >> 4U) != ((uint16_t)ch_num + 1U))
         {
-          /* chout_state will store the ep_type to be used for the same channel in IN direction */
+          /* chout_state will store the ep_type to be used for the same channel in IN direction
+           * adding + 1 to ep_type avoid starting with a 0 value. ep_type take by default (0/1/2/3) */
           hhcd->phy_chout_state[idx] = (((uint16_t)ch_num + 1U) << 4U) |
-                                       ((uint16_t)ep_type + 1U) | /* ep_type(0/1/2/3) so adding + 1 to avoid having a 0 value */
+                                       ((uint16_t)ep_type + 1U) |
                                        (((uint16_t)epnum & 0x0FU) << 8U);
         }
       }
@@ -2364,14 +2368,16 @@ static uint8_t HAL_HCD_Get_FreePhyChannel(HCD_HandleTypeDef *hhcd, uint8_t ch_nu
     /* Find a new available physical in channel */
     for (idx = 1U; idx < hhcd->Init.Host_channels; idx++)
     {
-      if ((hhcd->phy_chin_state[idx] == 0U) &&   /* if PhysicalChannelx(EPCHidx) IN is Free */
-          ((((hhcd->phy_chout_state[idx] & 0x000FU) == ((uint16_t)ep_type + 1U)) && /* if  the same (EPCHidx) Channelx OUT is already opened check if the same type is allocated */
-            (((hhcd->phy_chout_state[idx] & 0x0F00U) == ((uint16_t)epnum & 0x0FU)))) || /* Check if the same Epnum is allocated then allocate the same physical channelOUT for IN Logical Channel */
-           (hhcd->phy_chout_state[idx] == 0U))) /* OR if  physical Channel OUT (EPCHidx)is free */
+      /* Check if the same epnum is allocated then allocate the same physical channel OUT for IN Logical Channel */
+      if ((hhcd->phy_chin_state[idx] == 0U) &&
+          ((((hhcd->phy_chout_state[idx] & 0x000FU) == ((uint16_t)ep_type + 1U)) &&
+            (((hhcd->phy_chout_state[idx] & 0x0F00U) == ((uint16_t)epnum & 0x0FU)))) ||
+           (hhcd->phy_chout_state[idx] == 0U)))
       {
-        /* chin_state will store the ep_type to be used for the same channel in OUT direction */
+        /* chin_state to store the ep_type to be used for the same channel in OUT direction
+         * adding + 1 to ep_type avoid starting with a 0 value. ep_type take by default (0/1/2/3) */
         hhcd->phy_chin_state[idx] = (((uint16_t)ch_num + 1U) << 4U) |
-                                    ((uint16_t)ep_type + 1U) | /* ep_type(0/1/2/3) so adding + 1 to avoid having a 0 value */
+                                    ((uint16_t)ep_type + 1U) |
                                     (((uint16_t)epnum & 0x0FU) << 8U);
 
         return idx;
@@ -2383,15 +2389,16 @@ static uint8_t HAL_HCD_Get_FreePhyChannel(HCD_HandleTypeDef *hhcd, uint8_t ch_nu
     /* Find a new available physical out channel */
     for (idx = 1U; idx < hhcd->Init.Host_channels; idx++)
     {
-      /* if there is a free out channel and the same channel is used for the in direction then check if same ep_type used */
+      /* Check if the same epnum is allocated then allocate the same physical channel IN for OUT Logical Channel */
       if ((hhcd->phy_chout_state[idx] == 0U) &&
           ((((hhcd->phy_chin_state[idx] & 0x0FU) == ((uint16_t)ep_type + 1U)) &&
             ((hhcd->phy_chin_state[idx] & 0x0F00U) == ((uint16_t)epnum & 0x0FU))) ||
            (hhcd->phy_chin_state[idx] == 0U)))
       {
-        /* chout_state will store the ep_type to be used for the same channel in IN direction */
+        /* chout_state will store the ep_type to be used for the same channel in IN direction
+         * adding + 1 to ep_type avoid starting with a 0 value. ep_type take by default (0/1/2/3) */
         hhcd->phy_chout_state[idx] = (((uint16_t)ch_num + 1U) << 4U) |
-                                     ((uint16_t)ep_type + 1U) |  /* ep_type(0/1/2/3) so adding +1 to avoid having a 0 value */
+                                     ((uint16_t)ep_type + 1U) |
                                      (((uint16_t)epnum & 0x0FU) << 8U);
 
         return idx;

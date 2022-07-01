@@ -8,8 +8,8 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2018 STMicroelectronics.
-  * All rights reserved.
+  * Copyright (c) 2018 STMicroelectronics. 
+  * All rights reserved.</center></h2>
   *
   * This software is licensed under terms that can be found in the LICENSE file
   * in the root directory of this software component.
@@ -96,3 +96,5 @@ void HAL_PPP_MspDeInit(void)
 /**
   * @}
   */
+
+

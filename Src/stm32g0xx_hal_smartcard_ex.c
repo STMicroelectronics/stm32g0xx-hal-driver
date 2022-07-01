@@ -492,3 +492,4 @@ static void SMARTCARDEx_SetNbDataToProcess(SMARTCARD_HandleTypeDef *hsmartcard)
 /**
   * @}
   */
+

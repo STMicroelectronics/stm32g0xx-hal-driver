@@ -15,7 +15,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2018 STMicroelectronics.
+  * Copyright (c) 2018 STMicroelectronics. 
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -23,7 +23,7 @@
   * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
-  @verbatim
+ @verbatim
   ==============================================================================
                         ##### How to use this driver #####
   ==============================================================================
@@ -299,3 +299,5 @@ void RTC_TAMP_IRQHandler(void)
 /**
   * @}
   */
+
+

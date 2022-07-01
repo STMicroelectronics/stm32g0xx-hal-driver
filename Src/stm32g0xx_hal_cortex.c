@@ -8,17 +8,6 @@
   *           + Initialization and Configuration functions
   *           + Peripheral Control functions
   *
-  ******************************************************************************
-  * @attention
-  *
-  * Copyright (c) 2018 STMicroelectronics.
-  * All rights reserved.
-  *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
-  * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
-  ******************************************************************************
   @verbatim
   ==============================================================================
                         ##### How to use this driver #####
@@ -73,6 +62,16 @@
        (++) Reload Value should not exceed 0xFFFFFF
 
   @endverbatim
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2018 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file in
+  * the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
   ******************************************************************************
   */
 
@@ -131,9 +130,12 @@
   */
 void HAL_NVIC_SetPriority(IRQn_Type IRQn, uint32_t PreemptPriority, uint32_t SubPriority)
 {
+  /* Prevent unused argument(s) compilation warning */
+  UNUSED(SubPriority);
+
   /* Check the parameters */
   assert_param(IS_NVIC_PREEMPTION_PRIORITY(PreemptPriority));
-  NVIC_SetPriority(IRQn,PreemptPriority);
+  NVIC_SetPriority(IRQn, PreemptPriority);
 }
 
 /**
@@ -413,3 +415,4 @@ void HAL_MPU_ConfigRegion(MPU_Region_InitTypeDef *MPU_Init)
 /**
   * @}
   */
+

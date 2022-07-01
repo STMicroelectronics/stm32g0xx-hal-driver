@@ -6,8 +6,6 @@
   *          This file provides firmware functions to manage the following
   *          functionalities of the COMP peripheral:
   *           + Initialization and de-initialization functions
-  *           + Start/Stop operation functions in polling mode
-  *           + Start/Stop operation functions in interrupt mode (through EXTI interrupt)
   *           + Peripheral control functions
   *           + Peripheral state functions
   *
@@ -155,6 +153,7 @@
 
   @endverbatim
   ******************************************************************************
+
   */
 
 /* Includes ------------------------------------------------------------------*/

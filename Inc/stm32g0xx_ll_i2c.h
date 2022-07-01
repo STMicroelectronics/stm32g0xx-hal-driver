@@ -1267,7 +1267,7 @@ __STATIC_INLINE void LL_I2C_DisableSMBusTimeout(I2C_TypeDef *I2Cx, uint32_t Cloc
 __STATIC_INLINE uint32_t LL_I2C_IsEnabledSMBusTimeout(I2C_TypeDef *I2Cx, uint32_t ClockTimeout)
 {
   return ((READ_BIT(I2Cx->TIMEOUTR, (I2C_TIMEOUTR_TIMOUTEN | I2C_TIMEOUTR_TEXTEN)) == \
-                    (ClockTimeout)) ? 1UL : 0UL);
+           (ClockTimeout)) ? 1UL : 0UL);
 }
 
 /**

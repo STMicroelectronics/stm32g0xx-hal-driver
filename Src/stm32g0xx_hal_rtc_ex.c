@@ -104,7 +104,7 @@
      (+) Before calling those functions you have to call HAL_RTC_Init() in order to
          perform TAMP base address offset calculation.
 
-  @endverbatim
+   @endverbatim
   ******************************************************************************
   */
 
@@ -174,6 +174,9 @@ HAL_StatusTypeDef HAL_RTCEx_SetTimeStamp(RTC_HandleTypeDef *hrtc, uint32_t TimeS
   assert_param(IS_TIMESTAMP_EDGE(TimeStampEdge));
   assert_param(IS_RTC_TIMESTAMP_PIN(RTC_TimeStampPin));
 
+  /* Prevent unused argument(s) compilation warning if no assert_param check */
+  UNUSED(RTC_TimeStampPin);
+
   /* Process Locked */
   __HAL_LOCK(hrtc);
 
@@ -229,6 +232,9 @@ HAL_StatusTypeDef HAL_RTCEx_SetTimeStamp_IT(RTC_HandleTypeDef *hrtc, uint32_t Ti
   /* Check the parameters */
   assert_param(IS_TIMESTAMP_EDGE(TimeStampEdge));
   assert_param(IS_RTC_TIMESTAMP_PIN(RTC_TimeStampPin));
+
+  /* Prevent unused argument(s) compilation warning if no assert_param check */
+  UNUSED(RTC_TimeStampPin);
 
   /* Process Locked */
   __HAL_LOCK(hrtc);
@@ -1971,3 +1977,6 @@ uint32_t HAL_RTCEx_BKUPRead(RTC_HandleTypeDef *hrtc, uint32_t BackupRegister)
 /**
   * @}
   */
+
+
+

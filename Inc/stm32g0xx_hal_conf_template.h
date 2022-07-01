@@ -8,7 +8,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2018 STMicroelectronics.
+  * Copyright (c) 2018 STMicroelectronics. 
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -350,3 +350,6 @@ void assert_failed(uint8_t *file, uint32_t line);
 #endif
 
 #endif /* STM32G0xx_HAL_CONF_H */
+
+
+

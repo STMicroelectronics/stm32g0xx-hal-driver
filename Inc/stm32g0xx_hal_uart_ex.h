@@ -766,3 +766,4 @@ HAL_StatusTypeDef HAL_UARTEx_ReceiveToIdle_DMA(UART_HandleTypeDef *huart, uint8_
 #endif
 
 #endif /* STM32G0xx_HAL_UART_EX_H */
+

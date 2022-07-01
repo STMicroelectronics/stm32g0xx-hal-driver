@@ -8,7 +8,6 @@
   *           + Initialization and de-initialization functions
   *           + IO operation functions
   *           + Peripheral State and Errors functions
-  *
   ******************************************************************************
   * @attention
   *
@@ -181,7 +180,7 @@
        and weak (surcharged) callbacks are used.
 
   @endverbatim
-  ******************************************************************************
+
   */
 
 /* Includes ------------------------------------------------------------------*/
@@ -1869,3 +1868,4 @@ static HAL_StatusTypeDef I2S_WaitFlagStateUntilTimeout(I2S_HandleTypeDef *hi2s, 
 #endif /* SPI_I2S_SUPPORT */
 
 #endif /* HAL_I2S_MODULE_ENABLED */
+

@@ -7,7 +7,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2018 STMicroelectronics.
+  * Copyright (c) 2018 STMicroelectronics. 
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -209,3 +209,5 @@ typedef enum
 #endif
 
 #endif /* STM32G0xx_HAL_DEF */
+
+

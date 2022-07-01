@@ -833,3 +833,4 @@ extern "C" {
 #endif
 
 #endif /* STM32G0xx_HAL_GPIO_EX_H */
+

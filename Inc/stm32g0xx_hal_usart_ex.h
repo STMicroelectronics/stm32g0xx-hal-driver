@@ -459,3 +459,4 @@ HAL_StatusTypeDef HAL_USARTEx_SetRxFifoThreshold(USART_HandleTypeDef *husart, ui
 #endif
 
 #endif /* STM32G0xx_HAL_USART_EX_H */
+

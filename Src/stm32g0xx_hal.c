@@ -8,7 +8,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2018 STMicroelectronics.
+  * Copyright (c) 2018 STMicroelectronics. 
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -57,7 +57,7 @@
   */
 #define __STM32G0xx_HAL_VERSION_MAIN   (0x01U) /*!< [31:24] main version */
 #define __STM32G0xx_HAL_VERSION_SUB1   (0x04U) /*!< [23:16] sub1 version */
-#define __STM32G0xx_HAL_VERSION_SUB2   (0x03U) /*!< [15:8]  sub2 version */
+#define __STM32G0xx_HAL_VERSION_SUB2   (0x04U) /*!< [15:8]  sub2 version */
 #define __STM32G0xx_HAL_VERSION_RC     (0x00U) /*!< [7:0]  release candidate */
 #define __STM32G0xx_HAL_VERSION         ((__STM32G0xx_HAL_VERSION_MAIN << 24U)\
                                         |(__STM32G0xx_HAL_VERSION_SUB1 << 16U)\
@@ -755,3 +755,5 @@ void HAL_SYSCFG_StrobeDBattpinsConfig(uint32_t ConfigDeadBattery)
 /**
   * @}
   */
+
+

@@ -15,10 +15,9 @@
   * Copyright (c) 2018 STMicroelectronics.
   * All rights reserved.
   *
-  * This software is licensed under terms that can be found in the LICENSE file
-  * in the root directory of this software component.
+  * This software is licensed under terms that can be found in the LICENSE file in
+  * the root directory of this software component.
   * If no LICENSE file comes with this software, it is provided AS-IS.
-  *
   ******************************************************************************
   */
 
@@ -70,7 +69,7 @@
     This subsection provides a set of functions allowing to control the RCC Clocks
     frequencies.
     [..]
-    (@) Important note: Care must be taken when @ref HAL_RCCEx_PeriphCLKConfig() is used to
+    (@) Important note: Care must be taken when HAL_RCCEx_PeriphCLKConfig() is used to
         select the RTC clock source; in this case the Backup domain will be reset in
         order to modify the RTC Clock source, as consequence RTC registers (including
         the backup registers) and RCC_BDCR register are set to their reset values.
@@ -1318,7 +1317,7 @@ void HAL_RCCEx_DisableLSCO(void)
               (+++) Default values can be set for frequency Error Measurement (reload and error limit)
                         and also HSI48 oscillator smooth trimming.
               (+++) Macro __HAL_RCC_CRS_RELOADVALUE_CALCULATE can be also used to calculate
-                        directly reload value with target and sychronization frequencies values
+                        directly reload value with target and synchronization frequencies values
           (##) Call function HAL_RCCEx_CRSConfig which
               (+++) Resets CRS registers to their default values.
               (+++) Configures CRS registers with synchronization configuration
@@ -1676,3 +1675,4 @@ __weak void HAL_RCCEx_CRS_ErrorCallback(uint32_t Error)
 /**
   * @}
   */
+

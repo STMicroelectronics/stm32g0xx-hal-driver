@@ -75,36 +75,36 @@
 
 #if defined(DMA2)
 #define IS_LL_DMA_ALL_CHANNEL_INSTANCE(INSTANCE, CHANNEL)  ((((INSTANCE) == DMA1) && \
-                                                            (((CHANNEL) == LL_DMA_CHANNEL_1) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_2) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_3) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_4) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_5) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_6) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_7))) || \
+                                                             (((CHANNEL) == LL_DMA_CHANNEL_1) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_2) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_3) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_4) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_5) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_6) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_7))) || \
                                                             (((INSTANCE) == DMA2) && \
-                                                            (((CHANNEL) == LL_DMA_CHANNEL_1) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_2) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_3) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_4) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_5))))
+                                                             (((CHANNEL) == LL_DMA_CHANNEL_1) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_2) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_3) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_4) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_5))))
 #else /* DMA1 */
 #if   defined(DMA1_Channel7)
 #define IS_LL_DMA_ALL_CHANNEL_INSTANCE(INSTANCE, CHANNEL)  ((((INSTANCE) == DMA1) && \
-                                                            (((CHANNEL) == LL_DMA_CHANNEL_1) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_2) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_3) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_4) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_5) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_6) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_7))))
+                                                             (((CHANNEL) == LL_DMA_CHANNEL_1) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_2) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_3) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_4) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_5) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_6) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_7))))
 #else
 #define IS_LL_DMA_ALL_CHANNEL_INSTANCE(INSTANCE, CHANNEL)  ((((INSTANCE) == DMA1) && \
-                                                            (((CHANNEL) == LL_DMA_CHANNEL_1) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_2) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_3) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_4) || \
-                                                             ((CHANNEL) == LL_DMA_CHANNEL_5))))
+                                                             (((CHANNEL) == LL_DMA_CHANNEL_1) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_2) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_3) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_4) || \
+                                                              ((CHANNEL) == LL_DMA_CHANNEL_5))))
 #endif /* DMA1_Channel8 */
 #endif /* DMA2 */
 /**
@@ -364,3 +364,4 @@ void LL_DMA_StructInit(LL_DMA_InitTypeDef *DMA_InitStruct)
   */
 
 #endif /* USE_FULL_LL_DRIVER */
+

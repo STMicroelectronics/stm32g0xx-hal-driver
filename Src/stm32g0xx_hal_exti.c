@@ -80,7 +80,6 @@
     (#) Generate software interrupt using HAL_EXTI_GenerateSWI().
 
   @endverbatim
-  ******************************************************************************
   */
 
 /* Includes ------------------------------------------------------------------*/
@@ -668,3 +667,4 @@ void HAL_EXTI_GenerateSWI(EXTI_HandleTypeDef *hexti)
 /**
   * @}
   */
+

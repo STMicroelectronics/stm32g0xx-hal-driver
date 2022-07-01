@@ -460,11 +460,11 @@ typedef struct
   * @param  bEpChNum Endpoint Number.
   * @retval status
   */
-#define USB_DRD_GET_CHEP_TX_STATUS(USBx, bEpChNum)     ((uint16_t)USB_DRD_GET_CHEP((USBx), (bEpChNum))\
-                                                        & USB_DRD_CHEP_TX_STTX)
+#define USB_DRD_GET_CHEP_TX_STATUS(USBx, bEpChNum) \
+  ((uint16_t)USB_DRD_GET_CHEP((USBx), (bEpChNum)) & USB_DRD_CHEP_TX_STTX)
 
-#define USB_DRD_GET_CHEP_RX_STATUS(USBx, bEpChNum)     ((uint16_t)USB_DRD_GET_CHEP((USBx), (bEpChNum))\
-                                                        & USB_DRD_CHEP_RX_STRX)
+#define USB_DRD_GET_CHEP_RX_STATUS(USBx, bEpChNum) \
+  ((uint16_t)USB_DRD_GET_CHEP((USBx), (bEpChNum)) & USB_DRD_CHEP_RX_STRX)
 
 
 /**
@@ -724,8 +724,11 @@ typedef struct
   * @param  wBuf0Addr buffer 0 address.
   * @retval Counter value
   */
-#define USB_DRD_SET_CHEP_DBUF0_ADDR(USBx, bEpChNum, wBuf0Addr)    USB_DRD_SET_CHEP_TX_ADDRESS((USBx), (bEpChNum), (wBuf0Addr))
-#define USB_DRD_SET_CHEP_DBUF1_ADDR(USBx, bEpChNum, wBuf1Addr)    USB_DRD_SET_CHEP_RX_ADDRESS((USBx), (bEpChNum), (wBuf1Addr))
+#define USB_DRD_SET_CHEP_DBUF0_ADDR(USBx, bEpChNum, wBuf0Addr) \
+  USB_DRD_SET_CHEP_TX_ADDRESS((USBx), (bEpChNum), (wBuf0Addr))
+
+#define USB_DRD_SET_CHEP_DBUF1_ADDR(USBx, bEpChNum, wBuf1Addr) \
+  USB_DRD_SET_CHEP_RX_ADDRESS((USBx), (bEpChNum), (wBuf1Addr))
 
 
 /**

@@ -396,3 +396,4 @@ ErrorStatus LL_RNG_DeInit(RNG_TypeDef *RNGx);
 #endif
 
 #endif /* __STM32G0xx_LL_RNG_H */
+

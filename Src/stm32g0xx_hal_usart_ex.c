@@ -7,6 +7,7 @@
   *          functionalities of the Universal Synchronous Receiver Transmitter Peripheral (USART).
   *           + Peripheral Control functions
   *
+  *
   ******************************************************************************
   * @attention
   *
@@ -537,3 +538,4 @@ static void USARTEx_SetNbDataToProcess(USART_HandleTypeDef *husart)
 /**
   * @}
   */
+

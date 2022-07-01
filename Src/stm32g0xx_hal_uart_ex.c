@@ -8,6 +8,7 @@
   *           + Initialization and de-initialization functions
   *           + Peripheral Control functions
   *
+  *
   ******************************************************************************
   * @attention
   *
@@ -1062,3 +1063,4 @@ static void UARTEx_SetNbDataToProcess(UART_HandleTypeDef *huart)
 /**
   * @}
   */
+

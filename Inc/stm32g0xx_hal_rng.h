@@ -376,3 +376,4 @@ uint32_t             HAL_RNG_GetError(RNG_HandleTypeDef *hrng);
 
 
 #endif /* STM32G0xx_HAL_RNG_H */
+

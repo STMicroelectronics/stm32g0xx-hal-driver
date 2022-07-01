@@ -623,7 +623,7 @@ typedef struct __DMA_HandleTypeDef
   */
 #if defined(DMA2)
 #define __HAL_DMA_GET_FLAG(__HANDLE__, __FLAG__) (((uint32_t)((__HANDLE__)->Instance) > ((uint32_t)DMA1_Channel7))? \
- (DMA2->ISR & (__FLAG__)) : (DMA1->ISR & (__FLAG__)))
+                                                  (DMA2->ISR & (__FLAG__)) : (DMA1->ISR & (__FLAG__)))
 #else /* DMA1 */
 #define __HAL_DMA_GET_FLAG(__HANDLE__, __FLAG__)  (DMA1->ISR & (__FLAG__))
 #endif /* DMA2 */
@@ -642,7 +642,7 @@ typedef struct __DMA_HandleTypeDef
   */
 #if defined(DMA2)
 #define __HAL_DMA_CLEAR_FLAG(__HANDLE__, __FLAG__) (((uint32_t)((__HANDLE__)->Instance) > ((uint32_t)DMA1_Channel7))? \
- (DMA2->IFCR = (__FLAG__)) : (DMA1->IFCR = (__FLAG__)))
+                                                    (DMA2->IFCR = (__FLAG__)) : (DMA1->IFCR = (__FLAG__)))
 #else /* DMA1 */
 #define __HAL_DMA_CLEAR_FLAG(__HANDLE__, __FLAG__) (DMA1->IFCR |= (__FLAG__))
 #endif /* DMA2 */
@@ -718,10 +718,12 @@ HAL_StatusTypeDef HAL_DMA_DeInit(DMA_HandleTypeDef *hdma);
   */
 /* IO operation functions *****************************************************/
 HAL_StatusTypeDef HAL_DMA_Start(DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
-HAL_StatusTypeDef HAL_DMA_Start_IT(DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress, uint32_t DataLength);
+HAL_StatusTypeDef HAL_DMA_Start_IT(DMA_HandleTypeDef *hdma, uint32_t SrcAddress, uint32_t DstAddress,
+                                   uint32_t DataLength);
 HAL_StatusTypeDef HAL_DMA_Abort(DMA_HandleTypeDef *hdma);
 HAL_StatusTypeDef HAL_DMA_Abort_IT(DMA_HandleTypeDef *hdma);
-HAL_StatusTypeDef HAL_DMA_PollForTransfer(DMA_HandleTypeDef *hdma, HAL_DMA_LevelCompleteTypeDef CompleteLevel, uint32_t Timeout);
+HAL_StatusTypeDef HAL_DMA_PollForTransfer(DMA_HandleTypeDef *hdma, HAL_DMA_LevelCompleteTypeDef CompleteLevel,
+                                          uint32_t Timeout);
 void HAL_DMA_IRQHandler(DMA_HandleTypeDef *hdma);
 HAL_StatusTypeDef HAL_DMA_RegisterCallback(DMA_HandleTypeDef *hdma, HAL_DMA_CallbackIDTypeDef CallbackID, void (* pCallback)(DMA_HandleTypeDef *_hdma));
 HAL_StatusTypeDef HAL_DMA_UnRegisterCallback(DMA_HandleTypeDef *hdma, HAL_DMA_CallbackIDTypeDef CallbackID);
@@ -798,3 +800,4 @@ uint32_t             HAL_DMA_GetError(DMA_HandleTypeDef *hdma);
 #endif
 
 #endif /* STM32G0xx_HAL_DMA_H */
+

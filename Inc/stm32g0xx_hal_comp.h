@@ -168,8 +168,10 @@ typedef  void (*pCOMP_CallbackTypeDef)(COMP_HandleTypeDef *hcomp); /*!< pointer 
   * @{
   */
 #define COMP_WINDOWOUTPUT_EACH_COMP             (0x00000000UL)                            /*!< Window output default mode: Comparators output are indicating each their own state. To know window mode state: each comparator output must be read, if "((COMPx exclusive or COMPy) == 1)" then monitored signal is within comparators window.  */
-#define COMP_WINDOWOUTPUT_COMP1                 (COMP_CSR_WINOUT)                         /*!< Window output synthetized on COMP1 output: COMP1 output is no more indicating its own state, but global window mode state (logical high means monitored signal is within comparators window). */
-#define COMP_WINDOWOUTPUT_COMP2                 (COMP_CSR_WINOUT | COMP_WINDOWMODE_COMP2) /*!< Window output synthetized on COMP2 output: COMP2 output is no more indicating its own state, but global window mode state (logical high means monitored signal is within comparators window). */
+#define COMP_WINDOWOUTPUT_COMP1                 (COMP_CSR_WINOUT)                         /*!< Window output synthetized on COMP1 output: COMP1 output is no more indicating its own state, but global window mode state (logical high means monitored signal is within comparators window).
+                                                                                               Note: impacts only comparator output signal level (COMPx_OUT propagated to GPIO, EXTI lines, timers, ...), does not impact output digital state of comparator (COMPx_VALUE) always reflecting each comparator output state.*/
+#define COMP_WINDOWOUTPUT_COMP2                 (COMP_CSR_WINOUT | COMP_WINDOWMODE_COMP2) /*!< Window output synthetized on COMP2 output: COMP2 output is no more indicating its own state, but global window mode state (logical high means monitored signal is within comparators window).
+                                                                                               Note: impacts only comparator output signal level (COMPx_OUT propagated to GPIO, EXTI lines, timers, ...), does not impact output digital state of comparator (COMPx_VALUE) always reflecting each comparator output state.*/
 #if defined(COMP3)
 #define COMP_WINDOWOUTPUT_COMP3                 (COMP_CSR_WINOUT)                         /*!< Window output synthetized on COMP3 output: COMP3 output is no more indicating its own state, but global window mode state (logical high means monitored signal is within comparators window). */
 #endif /* COMP3 */

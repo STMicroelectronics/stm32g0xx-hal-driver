@@ -5,7 +5,9 @@
   * @brief   I2C Extended HAL module driver.
   *          This file provides firmware functions to manage the following
   *          functionalities of I2C Extended peripheral:
-  *           + Extended features functions
+  *           + Filter Mode Functions
+  *           + WakeUp Mode Functions
+  *           + FastModePlus Functions
   *
   ******************************************************************************
   * @attention
@@ -43,7 +45,6 @@
           (++) HAL_I2CEx_EnableFastModePlus()
           (++) HAL_I2CEx_DisableFastModePlus()
   @endverbatim
-  ******************************************************************************
   */
 
 /* Includes ------------------------------------------------------------------*/
@@ -349,7 +350,6 @@ void HAL_I2CEx_DisableFastModePlus(uint32_t ConfigFastModePlus)
 /**
   * @}
   */
-
 /**
   * @}
   */
