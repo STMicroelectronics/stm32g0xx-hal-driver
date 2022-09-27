@@ -33,4 +33,6 @@ The full **STM32CubeG0** MCU package is available [here](https://github.com/STMi
 
 ## Troubleshooting
 
-Please refer to the [CONTRIBUTING.md](CONTRIBUTING.md) guide.
+If you have any issue with the **software content** of this repository, you can file an issue [here](https://github.com/STMicroelectronics/stm32g0xx_hal_driver/issues/new).
+
+For any other question related to the product, the tools, the environment, you can submit a topic on the [ST Community/STM32 MCUs forum](https://community.st.com/s/group/0F90X000000AXsASAW/stm32-mcus).
