@@ -330,6 +330,9 @@ HAL_StatusTypeDef  HAL_HCD_PMAReset(HCD_HandleTypeDef *hhcd);
 /** @defgroup HCD_Private_Macros HCD Private Macros
   * @{
   */
+#define HCD_MIN(a, b)  (((a) < (b)) ? (a) : (b))
+#define HCD_MAX(a, b)  (((a) > (b)) ? (a) : (b))
+
 /** @defgroup HCD_LOGICAL_CHANNEL HCD Logical Channel
   * @{
   */
@@ -475,10 +478,24 @@ HAL_StatusTypeDef  HAL_HCD_PMAReset(HCD_HandleTypeDef *hhcd);
   * @param  bChNum channel Number.
   * @retval Counter value
   */
-__STATIC_INLINE uint16_t HCD_GET_CH_RX_CNT(const HCD_TypeDef *Instance, uint16_t bChNum)
+__STATIC_INLINE uint16_t HCD_GET_CH_RX_CNT(HCD_TypeDef *Instance, uint16_t bChNum)
 {
-  UNUSED(Instance);
+  uint32_t HostCoreSpeed;
   __IO uint32_t count = 10U;
+
+  /* Get Host core Speed */
+  HostCoreSpeed = USB_GetHostSpeed(Instance);
+
+  /* Count depends on device LS */
+  if (HostCoreSpeed == USB_DRD_SPEED_LS)
+  {
+    count = (63U * (HAL_RCC_GetHCLKFreq() / 1000000U)) / 100U;
+  }
+
+  if (count > 15U)
+  {
+    count = HCD_MAX(10U, (count - 15U));
+  }
 
   /* WA: few cycles for RX PMA descriptor to update */
   while (count > 0U)
