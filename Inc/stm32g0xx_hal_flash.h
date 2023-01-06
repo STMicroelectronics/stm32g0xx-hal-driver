@@ -763,8 +763,8 @@ typedef struct
 #endif /* FLASH_DBANK_SUPPORT */
 
 /**
-  * @brief  Clear the FLASH pending flags.
-  * @param  __FLAG__ specifies the FLASH flags to clear.
+  * @brief  Clear the FLASH pending flag.
+  * @param  __FLAG__ specifies the FLASH flag to clear.
   *         This parameter can be one of the following values :
   *     @arg @ref FLASH_FLAG_EOP FLASH End of Operation flag
   *     @arg @ref FLASH_FLAG_OPERR FLASH Operation error flag
