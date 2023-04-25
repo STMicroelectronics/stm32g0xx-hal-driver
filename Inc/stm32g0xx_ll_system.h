@@ -1018,7 +1018,7 @@ __STATIC_INLINE uint32_t LL_SYSCFG_IsActiveFlag_ADC(void)
 
 #if defined(SYSCFG_ITLINE12_SR_COMP1)
 /**
-  * @brief  Check if Comparator 1 interrupt occurred or not (EXTI line 21).
+  * @brief  Check if Comparator 1 interrupt occurred or not (EXTI line 17).
   * @rmtoll SYSCFG_ITLINE12 SR_COMP1      LL_SYSCFG_IsActiveFlag_COMP1
   * @retval State of bit (1 or 0).
   */
@@ -1030,7 +1030,7 @@ __STATIC_INLINE uint32_t LL_SYSCFG_IsActiveFlag_COMP1(void)
 
 #if defined(SYSCFG_ITLINE12_SR_COMP2)
 /**
-  * @brief  Check if Comparator 2 interrupt occurred or not (EXTI line 22).
+  * @brief  Check if Comparator 2 interrupt occurred or not (EXTI line 18).
   * @rmtoll SYSCFG_ITLINE12 SR_COMP2      LL_SYSCFG_IsActiveFlag_COMP2
   * @retval State of bit (1 or 0).
   */
