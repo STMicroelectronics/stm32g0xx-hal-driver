@@ -4659,7 +4659,7 @@ __STATIC_INLINE void LL_ADC_REG_StartConversion(ADC_TypeDef *ADCx)
   * @brief  Stop ADC group regular conversion.
   * @note   On this STM32 series, setting of this feature is conditioned to
   *         ADC state:
-  *         ADC must be enabled with conversion on going on group regular,
+  *         ADC must be enabled (potentially with conversion on going on group regular),
   *         without ADC disable command on going.
   * @rmtoll CR       ADSTP          LL_ADC_REG_StopConversion
   * @param  ADCx ADC instance

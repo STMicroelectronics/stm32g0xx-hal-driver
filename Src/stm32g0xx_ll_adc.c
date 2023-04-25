@@ -339,24 +339,13 @@ ErrorStatus LL_ADC_DeInit(ADC_TypeDef *ADCx)
   /* Check the parameters */
   assert_param(IS_ADC_ALL_INSTANCE(ADCx));
 
-  /* Disable ADC instance if not already disabled.                            */
+  /* Disable ADC instance if not already disabled. */
   if (LL_ADC_IsEnabled(ADCx) == 1UL)
   {
-    /* Set ADC group regular trigger source to SW start to ensure to not      */
-    /* have an external trigger event occurring during the conversion stop    */
-    /* ADC disable process.                                                   */
-    LL_ADC_REG_SetTriggerSource(ADCx, LL_ADC_REG_TRIG_SOFTWARE);
+    /* Stop potential ADC conversion on going on ADC group regular. */
+    LL_ADC_REG_StopConversion(ADCx);
 
-    /* Stop potential ADC conversion on going on ADC group regular.           */
-    if (LL_ADC_REG_IsConversionOngoing(ADCx) != 0UL)
-    {
-      if (LL_ADC_REG_IsStopConversionOngoing(ADCx) == 0UL)
-      {
-        LL_ADC_REG_StopConversion(ADCx);
-      }
-    }
-
-    /* Wait for ADC conversions are effectively stopped                       */
+    /* Wait for ADC conversions are effectively stopped */
     timeout_cpu_cycles = ADC_TIMEOUT_STOP_CONVERSION_CPU_CYCLES;
     while (LL_ADC_REG_IsStopConversionOngoing(ADCx) == 1UL)
     {
