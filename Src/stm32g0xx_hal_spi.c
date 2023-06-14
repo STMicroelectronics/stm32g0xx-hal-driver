@@ -1525,8 +1525,6 @@ HAL_StatusTypeDef HAL_SPI_Transmit_IT(SPI_HandleTypeDef *hspi, uint8_t *pData, u
   /* Check Direction parameter */
   assert_param(IS_SPI_DIRECTION_2LINES_OR_1LINE(hspi->Init.Direction));
 
-  /* Process Locked */
-  __HAL_LOCK(hspi);
 
   if ((pData == NULL) || (Size == 0U))
   {
@@ -1539,6 +1537,9 @@ HAL_StatusTypeDef HAL_SPI_Transmit_IT(SPI_HandleTypeDef *hspi, uint8_t *pData, u
     errorcode = HAL_BUSY;
     goto error;
   }
+
+  /* Process Locked */
+  __HAL_LOCK(hspi);
 
   /* Set the transaction information */
   hspi->State       = HAL_SPI_STATE_BUSY_TX;
@@ -1579,10 +1580,6 @@ HAL_StatusTypeDef HAL_SPI_Transmit_IT(SPI_HandleTypeDef *hspi, uint8_t *pData, u
   }
 #endif /* USE_SPI_CRC */
 
-  /* Enable TXE and ERR interrupt */
-  __HAL_SPI_ENABLE_IT(hspi, (SPI_IT_TXE | SPI_IT_ERR));
-
-
   /* Check if the SPI is already enabled */
   if ((hspi->Instance->CR1 & SPI_CR1_SPE) != SPI_CR1_SPE)
   {
@@ -1590,8 +1587,12 @@ HAL_StatusTypeDef HAL_SPI_Transmit_IT(SPI_HandleTypeDef *hspi, uint8_t *pData, u
     __HAL_SPI_ENABLE(hspi);
   }
 
-error :
+  /* Process Unlocked */
   __HAL_UNLOCK(hspi);
+  /* Enable TXE and ERR interrupt */
+  __HAL_SPI_ENABLE_IT(hspi, (SPI_IT_TXE | SPI_IT_ERR));
+
+error :
   return errorcode;
 }
 
@@ -1621,14 +1622,15 @@ HAL_StatusTypeDef HAL_SPI_Receive_IT(SPI_HandleTypeDef *hspi, uint8_t *pData, ui
     return HAL_SPI_TransmitReceive_IT(hspi, pData, pData, Size);
   }
 
-  /* Process Locked */
-  __HAL_LOCK(hspi);
 
   if ((pData == NULL) || (Size == 0U))
   {
     errorcode = HAL_ERROR;
     goto error;
   }
+
+  /* Process Locked */
+  __HAL_LOCK(hspi);
 
   /* Set the transaction information */
   hspi->State       = HAL_SPI_STATE_BUSY_RX;
@@ -1682,9 +1684,6 @@ HAL_StatusTypeDef HAL_SPI_Receive_IT(SPI_HandleTypeDef *hspi, uint8_t *pData, ui
   }
 #endif /* USE_SPI_CRC */
 
-  /* Enable TXE and ERR interrupt */
-  __HAL_SPI_ENABLE_IT(hspi, (SPI_IT_RXNE | SPI_IT_ERR));
-
   /* Note : The SPI must be enabled after unlocking current process
             to avoid the risk of SPI interrupt handle execution before current
             process unlock */
@@ -1696,9 +1695,12 @@ HAL_StatusTypeDef HAL_SPI_Receive_IT(SPI_HandleTypeDef *hspi, uint8_t *pData, ui
     __HAL_SPI_ENABLE(hspi);
   }
 
-error :
   /* Process Unlocked */
   __HAL_UNLOCK(hspi);
+  /* Enable RXNE and ERR interrupt */
+  __HAL_SPI_ENABLE_IT(hspi, (SPI_IT_RXNE | SPI_IT_ERR));
+
+error :
   return errorcode;
 }
 
@@ -1720,9 +1722,6 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, uint8_t *p
   /* Check Direction parameter */
   assert_param(IS_SPI_DIRECTION_2LINES(hspi->Init.Direction));
 
-  /* Process locked */
-  __HAL_LOCK(hspi);
-
   /* Init temporary variables */
   tmp_state           = hspi->State;
   tmp_mode            = hspi->Init.Mode;
@@ -1739,6 +1738,9 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, uint8_t *p
     errorcode = HAL_ERROR;
     goto error;
   }
+
+  /* Process locked */
+  __HAL_LOCK(hspi);
 
   /* Don't overwrite in case of HAL_SPI_STATE_BUSY_RX */
   if (hspi->State != HAL_SPI_STATE_BUSY_RX)
@@ -1796,8 +1798,6 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, uint8_t *p
     SET_BIT(hspi->Instance->CR2, SPI_RXFIFO_THRESHOLD);
   }
 
-  /* Enable TXE, RXNE and ERR interrupt */
-  __HAL_SPI_ENABLE_IT(hspi, (SPI_IT_TXE | SPI_IT_RXNE | SPI_IT_ERR));
 
   /* Check if the SPI is already enabled */
   if ((hspi->Instance->CR1 & SPI_CR1_SPE) != SPI_CR1_SPE)
@@ -1806,9 +1806,12 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, uint8_t *p
     __HAL_SPI_ENABLE(hspi);
   }
 
-error :
   /* Process Unlocked */
   __HAL_UNLOCK(hspi);
+  /* Enable TXE, RXNE and ERR interrupt */
+  __HAL_SPI_ENABLE_IT(hspi, (SPI_IT_TXE | SPI_IT_RXNE | SPI_IT_ERR));
+
+error :
   return errorcode;
 }
 
@@ -1950,13 +1953,13 @@ HAL_StatusTypeDef HAL_SPI_Receive_DMA(SPI_HandleTypeDef *hspi, uint8_t *pData, u
 
   /* Check rx dma handle */
   assert_param(IS_SPI_DMA_HANDLE(hspi->hdmarx));
-  
+
   if (hspi->State != HAL_SPI_STATE_READY)
   {
     errorcode = HAL_BUSY;
     goto error;
   }
-  
+
   if ((hspi->Init.Direction == SPI_DIRECTION_2LINES) && (hspi->Init.Mode == SPI_MODE_MASTER))
   {
     hspi->State = HAL_SPI_STATE_BUSY_RX;
