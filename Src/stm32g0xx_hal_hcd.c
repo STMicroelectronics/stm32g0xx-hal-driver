@@ -1904,6 +1904,12 @@ static void HCD_HC_IN_IRQHandler(HCD_HandleTypeDef *hhcd, uint8_t ch_num)
         hhcd->hc[ch_num & 0xFU].urb_state = URB_NOTREADY;
         hhcd->hc[ch_num & 0xFU].ErrCnt = 0U;
         hhcd->hc[ch_num & 0xFU].state = HC_NAK;
+
+        if (hhcd->hc[ch_num & 0xFU].ep_type == EP_TYPE_INTR)
+        {
+          /* Close the channel */
+          HCD_SET_CH_RX_STATUS(hhcd->Instance, phy_chnum, USB_CH_RX_DIS);
+        }
       }
       /* manage STALL Response */
       else if ((ch_reg & USB_CH_RX_STRX) == USB_CH_RX_STALL)
