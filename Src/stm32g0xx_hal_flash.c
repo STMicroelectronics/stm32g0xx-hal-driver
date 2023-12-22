@@ -459,7 +459,7 @@ HAL_StatusTypeDef HAL_FLASH_Lock(void)
   HAL_StatusTypeDef status = HAL_ERROR;
 
   /* Wait for last operation to be completed */
-  FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+  (void)FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
 
   /* Set the LOCK Bit to lock the FLASH Registers access */
   SET_BIT(FLASH->CR, FLASH_CR_LOCK);
@@ -506,7 +506,7 @@ HAL_StatusTypeDef HAL_FLASH_OB_Lock(void)
   HAL_StatusTypeDef status = HAL_ERROR;
 
   /* Wait for last operation to be completed */
-  FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
+  (void)FLASH_WaitForLastOperation(FLASH_TIMEOUT_VALUE);
 
   /* Set the OPTLOCK Bit to lock the FLASH Option Byte Registers access */
   SET_BIT(FLASH->CR, FLASH_CR_OPTLOCK);
