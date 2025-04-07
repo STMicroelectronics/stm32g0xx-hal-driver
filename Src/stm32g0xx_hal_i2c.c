@@ -1407,14 +1407,6 @@ HAL_StatusTypeDef HAL_I2C_Slave_Transmit(I2C_HandleTypeDef *hi2c, uint8_t *pData
     /* Enable Address Acknowledge */
     hi2c->Instance->CR2 &= ~I2C_CR2_NACK;
 
-    /* Wait until ADDR flag is set */
-    if (I2C_WaitOnFlagUntilTimeout(hi2c, I2C_FLAG_ADDR, RESET, Timeout, tickstart) != HAL_OK)
-    {
-      /* Disable Address Acknowledge */
-      hi2c->Instance->CR2 |= I2C_CR2_NACK;
-      return HAL_ERROR;
-    }
-
     /* Preload TX data if no stretch enable */
     if (hi2c->Init.NoStretchMode == I2C_NOSTRETCH_ENABLE)
     {
@@ -1428,6 +1420,18 @@ HAL_StatusTypeDef HAL_I2C_Slave_Transmit(I2C_HandleTypeDef *hi2c, uint8_t *pData
       hi2c->XferCount--;
     }
 
+    /* Wait until ADDR flag is set */
+    if (I2C_WaitOnFlagUntilTimeout(hi2c, I2C_FLAG_ADDR, RESET, Timeout, tickstart) != HAL_OK)
+    {
+      /* Disable Address Acknowledge */
+      hi2c->Instance->CR2 |= I2C_CR2_NACK;
+
+      /* Flush TX register */
+      I2C_Flush_TXDR(hi2c);
+
+      return HAL_ERROR;
+    }
+
     /* Clear ADDR flag */
     __HAL_I2C_CLEAR_FLAG(hi2c, I2C_FLAG_ADDR);
 
@@ -1439,6 +1443,10 @@ HAL_StatusTypeDef HAL_I2C_Slave_Transmit(I2C_HandleTypeDef *hi2c, uint8_t *pData
       {
         /* Disable Address Acknowledge */
         hi2c->Instance->CR2 |= I2C_CR2_NACK;
+
+        /* Flush TX register */
+        I2C_Flush_TXDR(hi2c);
+
         return HAL_ERROR;
       }
 
@@ -1451,6 +1459,10 @@ HAL_StatusTypeDef HAL_I2C_Slave_Transmit(I2C_HandleTypeDef *hi2c, uint8_t *pData
     {
       /* Disable Address Acknowledge */
       hi2c->Instance->CR2 |= I2C_CR2_NACK;
+
+      /* Flush TX register */
+      I2C_Flush_TXDR(hi2c);
+
       return HAL_ERROR;
     }
 
