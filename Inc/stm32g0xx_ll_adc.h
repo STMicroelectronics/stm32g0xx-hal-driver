@@ -258,18 +258,18 @@ extern "C" {
 
 /* ADC internal channels related definitions */
 /* Internal voltage reference VrefInt */
-#define VREFINT_CAL_ADDR                   ((uint16_t*) (0x1FFF75AAUL)) /* Internal voltage reference, address of
+#define VREFINT_CAL_ADDR                   ((const uint16_t*) (0x1FFF75AAUL)) /* Internal voltage reference, address of
                                            parameter VREFINT_CAL: VrefInt ADC raw data acquired at temperature 30 DegC
                                            (tolerance: +-5 DegC), Vref+ = 3.0 V (tolerance: +-10 mV). */
 #define VREFINT_CAL_VREF                   ( 3000UL)                    /* Analog voltage reference (Vref+) value
                                            with which VrefInt has been calibrated in production
                                            (tolerance: +-10 mV) (unit: mV). */
 /* Temperature sensor */
-#define TEMPSENSOR_CAL1_ADDR               ((uint16_t*) (0x1FFF75A8UL)) /* Address of parameter TS_CAL1: On STM32G0,
-                                           temperature sensor ADC raw data acquired at temperature  30 DegC
+#define TEMPSENSOR_CAL1_ADDR               ((const uint16_t*) (0x1FFF75A8UL)) /* Address of parameter TS_CAL1: On
+                                           STM32G0, temperature sensor ADC raw data acquired at temperature 30 DegC
                                            (tolerance: +-5 DegC), Vref+ = 3.0 V (tolerance: +-10 mV). */
-#define TEMPSENSOR_CAL2_ADDR               ((uint16_t*) (0x1FFF75CAUL)) /* Address of parameter TS_CAL2: On STM32G0,
-                                           temperature sensor ADC raw data acquired at temperature 130 DegC
+#define TEMPSENSOR_CAL2_ADDR               ((const uint16_t*) (0x1FFF75CAUL)) /* Address of parameter TS_CAL2: On 
+                                           STM32G0, temperature sensor ADC raw data acquired at temperature 130 DegC
                                            (tolerance: +-5 DegC), Vref+ = 3.0 V (tolerance: +-10 mV). */
 #define TEMPSENSOR_CAL1_TEMP               (( int32_t)   30)            /* Temperature at which temperature sensor
                                            has been calibrated in production for data into TEMPSENSOR_CAL1_ADDR
