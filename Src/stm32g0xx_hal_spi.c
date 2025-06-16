@@ -3536,8 +3536,10 @@ static void SPI_2linesRxISR_8BIT(struct __SPI_HandleTypeDef *hspi)
   /* Receive data in packing mode */
   if (hspi->RxXferCount > 1U)
   {
-    *((uint16_t *)hspi->pRxBuffPtr) = (uint16_t)(hspi->Instance->DR);
-    hspi->pRxBuffPtr += sizeof(uint16_t);
+    *hspi->pRxBuffPtr = *((__IO uint8_t *)&hspi->Instance->DR);
+    hspi->pRxBuffPtr++;
+    *hspi->pRxBuffPtr = *((__IO uint8_t *)&hspi->Instance->DR);
+    hspi->pRxBuffPtr++;
     hspi->RxXferCount -= 2U;
     if (hspi->RxXferCount == 1U)
     {
@@ -3618,20 +3620,10 @@ static void SPI_2linesRxISR_8BITCRC(struct __SPI_HandleTypeDef *hspi)
   */
 static void SPI_2linesTxISR_8BIT(struct __SPI_HandleTypeDef *hspi)
 {
-  /* Transmit data in packing Bit mode */
-  if (hspi->TxXferCount >= 2U)
-  {
-    hspi->Instance->DR = *((uint16_t *)hspi->pTxBuffPtr);
-    hspi->pTxBuffPtr += sizeof(uint16_t);
-    hspi->TxXferCount -= 2U;
-  }
   /* Transmit data in 8 Bit mode */
-  else
-  {
-    *(__IO uint8_t *)&hspi->Instance->DR = (*hspi->pTxBuffPtr);
-    hspi->pTxBuffPtr++;
-    hspi->TxXferCount--;
-  }
+  *(__IO uint8_t *)&hspi->Instance->DR = *((const uint8_t *)hspi->pTxBuffPtr);
+  hspi->pTxBuffPtr++;
+  hspi->TxXferCount--;
 
   /* Check the end of the transmission */
   if (hspi->TxXferCount == 0U)
