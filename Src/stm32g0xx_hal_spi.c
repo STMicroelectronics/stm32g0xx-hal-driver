@@ -68,14 +68,6 @@
           (##) HAL_SPI_DeInit()
           (##) HAL_SPI_Init()
      [..]
-       Data buffer address alignment restriction:
-      (#) There is no support for unaligned accesses on the Cortex-M0 processor.
-          If the user wants to transfer in 16Bit data mode, it shall ensure that 16-bit aligned address is used for:
-          (##) pData parameter in HAL_SPI_Transmit(), HAL_SPI_Transmit_IT(), HAL_SPI_Receive() and HAL_SPI_Receive_IT()
-          (##) pTxData and pRxData parameters in HAL_SPI_TransmitReceive() and HAL_SPI_TransmitReceive_IT()
-      (#) There is no such restriction when going through DMA by using HAL_SPI_Transmit_DMA(), HAL_SPI_Receive_DMA()
-          and HAL_SPI_TransmitReceive_DMA().
-     [..]
        Callback registration:
 
       (#) The compilation flag USE_HAL_SPI_REGISTER_CALLBACKS when set to 1U
@@ -831,13 +823,6 @@ HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint
   uint32_t tickstart;
   uint16_t initial_TxXferCount;
 
-  if (hspi->Init.DataSize > SPI_DATASIZE_8BIT)
-  {
-    /* in this case, 16-bit access is performed on Data
-       So, check Data is 16-bit aligned address */
-    assert_param(IS_SPI_16BIT_ALIGNED_ADDRESS(pData));
-  }
-
   /* Check Direction parameter */
   assert_param(IS_SPI_DIRECTION_2LINES_OR_1LINE(hspi->Init.Direction));
 
@@ -998,6 +983,9 @@ HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint
   * @param  Size amount of data to be received
   * @param  Timeout Timeout duration
   * @retval HAL status
+  * @note   In master mode, if the direction is set to SPI_DIRECTION_2LINES 
+  *         the receive buffer is written to data register (DR) to generate
+  *         clock pulses and receive data
   */
 HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size, uint32_t Timeout)
 {
@@ -1007,13 +995,6 @@ HAL_StatusTypeDef HAL_SPI_Receive(SPI_HandleTypeDef *hspi, uint8_t *pData, uint1
   __IO uint8_t  tmpreg8 = 0;
 #endif /* USE_SPI_CRC */
   uint32_t tickstart;
-
-  if (hspi->Init.DataSize > SPI_DATASIZE_8BIT)
-  {
-    /* in this case, 16-bit access is performed on Data
-       So, check Data is 16-bit aligned address */
-    assert_param(IS_SPI_16BIT_ALIGNED_ADDRESS(pData));
-  }
 
   if (hspi->State != HAL_SPI_STATE_READY)
   {
@@ -1266,14 +1247,6 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef *hspi, uint8_t *pTxD
 
   /* Variable used to alternate Rx and Tx during transfer */
   uint32_t             txallowed = 1U;
-
-  if (hspi->Init.DataSize > SPI_DATASIZE_8BIT)
-  {
-    /* in this case, 16-bit access is performed on Data
-       So, check Data is 16-bit aligned address */
-    assert_param(IS_SPI_16BIT_ALIGNED_ADDRESS(pTxData));
-    assert_param(IS_SPI_16BIT_ALIGNED_ADDRESS(pRxData));
-  }
 
   /* Check Direction parameter */
   assert_param(IS_SPI_DIRECTION_2LINES(hspi->Init.Direction));
@@ -1573,13 +1546,6 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive(SPI_HandleTypeDef *hspi, uint8_t *pTxD
 HAL_StatusTypeDef HAL_SPI_Transmit_IT(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size)
 {
 
-  if (hspi->Init.DataSize > SPI_DATASIZE_8BIT)
-  {
-    /* in this case, 16-bit access is performed on Data
-       So, check Data is 16-bit aligned address */
-    assert_param(IS_SPI_16BIT_ALIGNED_ADDRESS(pData));
-  }
-
   /* Check Direction parameter */
   assert_param(IS_SPI_DIRECTION_2LINES_OR_1LINE(hspi->Init.Direction));
 
@@ -1661,13 +1627,6 @@ HAL_StatusTypeDef HAL_SPI_Transmit_IT(SPI_HandleTypeDef *hspi, uint8_t *pData, u
   */
 HAL_StatusTypeDef HAL_SPI_Receive_IT(SPI_HandleTypeDef *hspi, uint8_t *pData, uint16_t Size)
 {
-  if (hspi->Init.DataSize > SPI_DATASIZE_8BIT)
-  {
-    /* in this case, 16-bit access is performed on Data
-       So, check Data is 16-bit aligned address */
-    assert_param(IS_SPI_16BIT_ALIGNED_ADDRESS(pData));
-  }
-
 
   if (hspi->State != HAL_SPI_STATE_READY)
   {
@@ -1774,14 +1733,6 @@ HAL_StatusTypeDef HAL_SPI_TransmitReceive_IT(SPI_HandleTypeDef *hspi, uint8_t *p
 {
   uint32_t             tmp_mode;
   HAL_SPI_StateTypeDef tmp_state;
-
-  if (hspi->Init.DataSize > SPI_DATASIZE_8BIT)
-  {
-    /* in this case, 16-bit access is performed on Data
-       So, check Data is 16-bit aligned address */
-    assert_param(IS_SPI_16BIT_ALIGNED_ADDRESS(pTxData));
-    assert_param(IS_SPI_16BIT_ALIGNED_ADDRESS(pRxData));
-  }
 
   /* Check Direction parameter */
   assert_param(IS_SPI_DIRECTION_2LINES(hspi->Init.Direction));
