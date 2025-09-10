@@ -983,7 +983,7 @@ HAL_StatusTypeDef HAL_SPI_Transmit(SPI_HandleTypeDef *hspi, uint8_t *pData, uint
   * @param  Size amount of data to be received
   * @param  Timeout Timeout duration
   * @retval HAL status
-  * @note   In master mode, if the direction is set to SPI_DIRECTION_2LINES 
+  * @note   In master mode, if the direction is set to SPI_DIRECTION_2LINES
   *         the receive buffer is written to data register (DR) to generate
   *         clock pulses and receive data
   */
@@ -4008,7 +4008,10 @@ static HAL_StatusTypeDef SPI_WaitFifoStateUntilTimeout(SPI_HandleTypeDef *hspi, 
       {
         tmp_timeout = 0U;
       }
-      count--;
+      else
+      {
+        count--;
+      }
     }
   }
 
