@@ -1479,6 +1479,17 @@ __STATIC_INLINE uint32_t LL_UCPD_IsActiveFlag_TypeCEventCC1(UCPD_TypeDef const *
 }
 
 /**
+  * @brief  Check if Rx error flag is active
+  * @rmtoll SR          RXERR         LL_UCPD_IsActiveFlag_RxErr
+  * @param  UCPDx UCPD Instance
+  * @retval State of bit (1 or 0).
+  */
+__STATIC_INLINE uint32_t LL_UCPD_IsActiveFlag_RxErr(UCPD_TypeDef const *const UCPDx)
+{
+  return ((READ_BIT(UCPDx->SR, UCPD_SR_RXERR) == UCPD_SR_RXERR) ? 1UL : 0UL);
+}
+
+/**
   * @brief  Check if Rx message end interrupt
   * @rmtoll SR          RXMSGEND         LL_UCPD_IsActiveFlag_RxMsgEnd
   * @param  UCPDx UCPD Instance
