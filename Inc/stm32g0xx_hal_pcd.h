@@ -199,7 +199,6 @@ typedef struct
 #define __HAL_USB_WAKEUP_EXTI_ENABLE_IT()                         EXTI->IMR2 |= USB_WAKEUP_EXTI_LINE
 #define __HAL_USB_WAKEUP_EXTI_DISABLE_IT()                        EXTI->IMR2 &= ~(USB_WAKEUP_EXTI_LINE)
 
-
 /**
   * @}
   */

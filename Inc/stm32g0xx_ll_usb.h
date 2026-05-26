@@ -696,21 +696,21 @@ typedef USB_HCTypeDef       USB_DRD_HCTypeDef;
 #define USB_DRD_SET_CHEP_CNT_RX_REG(pdwReg, wCount) \
   do { \
     uint32_t wNBlocks; \
-    \
-    (pdwReg) &= ~(USB_CNTRX_BLSIZE | USB_CNTRX_NBLK_MSK); \
+    uint32_t wRegVal = (uint32_t)(pdwReg) & ~(USB_CNTRX_BLSIZE | USB_CNTRX_NBLK_MSK); \
     \
     if ((wCount) == 0U) \
     { \
-      (pdwReg) |= USB_CNTRX_BLSIZE; \
+      wRegVal |= USB_CNTRX_BLSIZE; \
     } \
     else if ((wCount) <= 62U) \
     { \
-      USB_DRD_CALC_BLK2((pdwReg), (wCount), wNBlocks); \
+      USB_DRD_CALC_BLK2(wRegVal, (wCount), wNBlocks); \
     } \
     else \
     { \
-      USB_DRD_CALC_BLK32((pdwReg), (wCount), wNBlocks); \
+      USB_DRD_CALC_BLK32(wRegVal, (wCount), wNBlocks); \
     } \
+    (pdwReg) = wRegVal; \
   } while(0) /* USB_DRD_SET_CHEP_CNT_RX_REG */
 
 
