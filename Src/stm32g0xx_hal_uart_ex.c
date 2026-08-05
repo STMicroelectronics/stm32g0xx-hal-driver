@@ -1064,10 +1064,10 @@ static void UARTEx_SetNbDataToProcess(UART_HandleTypeDef *huart)
     tx_fifo_depth = TX_FIFO_DEPTH;
     rx_fifo_threshold = (uint8_t)(READ_BIT(huart->Instance->CR3, USART_CR3_RXFTCFG) >> USART_CR3_RXFTCFG_Pos);
     tx_fifo_threshold = (uint8_t)(READ_BIT(huart->Instance->CR3, USART_CR3_TXFTCFG) >> USART_CR3_TXFTCFG_Pos);
-    huart->NbTxDataToProcess = ((uint16_t)tx_fifo_depth * numerator[tx_fifo_threshold]) /
-                               (uint16_t)denominator[tx_fifo_threshold];
-    huart->NbRxDataToProcess = ((uint16_t)rx_fifo_depth * numerator[rx_fifo_threshold]) /
-                               (uint16_t)denominator[rx_fifo_threshold];
+    huart->NbTxDataToProcess = (uint16_t)(((uint16_t)tx_fifo_depth * numerator[tx_fifo_threshold]) /
+                               denominator[tx_fifo_threshold]);
+    huart->NbRxDataToProcess = (uint16_t)(((uint16_t)rx_fifo_depth * numerator[rx_fifo_threshold]) /
+                               denominator[rx_fifo_threshold]);
   }
 }
 /**
